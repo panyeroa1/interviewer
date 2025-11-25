@@ -3,10 +3,11 @@ import { ApplicantData } from '../types';
 
 interface ApplicantFormProps {
   onSubmit: (data: ApplicantData) => void;
+  onBack: () => void;
 }
 
-const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
-  const [formData, setFormData] = useState<ApplicantData>({
+const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit, onBack }) => {
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     role: '',
@@ -22,10 +23,12 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         formData.experience.trim()
     ) {
       onSubmit({
+          id: crypto.randomUUID(),
           name: formData.name.trim(),
           email: formData.email.trim(),
           role: formData.role.trim(),
-          experience: formData.experience.trim()
+          experience: formData.experience.trim(),
+          timestamp: Date.now()
       });
     }
   };
@@ -40,7 +43,6 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           
-          {/* Name */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
             <input
@@ -54,7 +56,6 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             />
           </div>
 
-          {/* Email */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
             <input
@@ -68,7 +69,6 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             />
           </div>
 
-          {/* Role */}
           <div>
             <label htmlFor="role" className="block text-sm font-medium text-gray-300 mb-1">Role Applying For</label>
             <input
@@ -82,7 +82,6 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             />
           </div>
 
-          {/* Experience */}
           <div>
             <label htmlFor="experience" className="block text-sm font-medium text-gray-300 mb-1">Brief Experience Summary</label>
             <textarea
@@ -102,8 +101,10 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
           >
             Continue to Interview Setup
           </button>
-
         </form>
+        <button onClick={onBack} className="w-full text-center mt-6 text-gray-500 hover:text-white text-sm">
+            &larr; Back to Home
+        </button>
       </div>
     </div>
   );
