@@ -59,7 +59,7 @@ export class GeminiLiveClient {
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: {
-            voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Aoede' } }, // Requested voice
+            voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Leda' } }, // Requested voice
           },
           systemInstruction: getSystemInstruction(applicantData),
         },
