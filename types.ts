@@ -1,3 +1,4 @@
+
 export interface StreamState {
   isConnected: boolean;
   isStreaming: boolean;
@@ -34,6 +35,19 @@ export interface InterviewReport {
   score: number; // 1-100
   recommendation: 'HIRE' | 'CONSIDER' | 'PASS';
   transcript: TranscriptItem[];
+}
+
+export interface JobPosting {
+  id: string;
+  title: string;
+  department: string;
+  location: string;
+  type: 'Full-time' | 'Part-time' | 'Contract' | 'Remote';
+  description: string;
+  requirements: string[];
+  salaryRange: string;
+  status: 'Active' | 'Closed' | 'Draft';
+  postedAt: number;
 }
 
 export type AppStep = 'landing' | 'login' | 'admin' | 'applicant-form' | 'interview' | 'thank-you';
